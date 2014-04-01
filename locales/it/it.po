@@ -25,7 +25,7 @@ msgid "help"
 msgstr "Aiuto"
 
 msgid "layout##label"
-msgstr "Layout"
+msgstr "Disposizione"
 
 msgid "layout##custom"
 msgstr "Personale"
@@ -121,7 +121,7 @@ msgid "forecast-day-font##text"
 msgstr "Testo di Esempio per Giorno"
 
 msgid "layout-url"
-msgstr "URL Layout"
+msgstr "URL Disposizione"
 
 msgid "address##label"
 msgstr "Indirizzo"
@@ -233,10 +233,10 @@ msgstr "Colore Sfondo"
 
 msgid "terms"
 msgstr ""
-"Sono consapevole che attualmente non c'è un costo per quetso widget, ma nel "
-"futuro, anche se questa data è ancora da definire, avrà un costo di $2,00 "
-"per ogni Display al mese. Quando arriverà il momento avrò 30 giorni di tempo "
-"per decidere se continuare ad utilizare questo widget."
+"Sono consapevole del fatto che attualmente non vi è alcun costo per "
+"utilizzare il Widget, ma in futuro, anche se tale data è ancora da definire, "
+"costerà 2,00 dollari al mese per ogni visualizzazione. Quando arriva il "
+"momento avrò 30 giorni per decidere se continuare a utilizzare questo Widget."
 
 msgid "monday"
 msgstr "Lunedì"

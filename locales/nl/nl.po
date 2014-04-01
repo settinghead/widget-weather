@@ -19,7 +19,7 @@ msgid "save"
 msgstr "Opslaan"
 
 msgid "cancel"
-msgstr "Afbreken"
+msgstr "Annuleren"
 
 msgid "help"
 msgstr "Help"
@@ -233,9 +233,10 @@ msgstr "Achtergrond kleur"
 
 msgid "terms"
 msgstr ""
-"Ik erken dat er nu geen kosten zijn voor deze Widget, maar mogelijk in de "
-"toekomst, gaat deze $2 per display kosten per maand.Ik heb dan 30 dagen de "
-"tijd om te beslissen of ik deze Widget wil blijven gebruiken."
+"Ik erken dat er momenteel geen kosten voor deze Widget, maar op een datum "
+"die nog moet worden bepaald, het kost $ 2 dollar per scherm, per maand. Op "
+"dat moment zal ik 30 dagen om te beslissen of ik wil blijven gebruiken deze "
+"Widget."
 
 msgid "monday"
 msgstr "Maandag"
