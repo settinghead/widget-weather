@@ -30,7 +30,7 @@
 	<div class="widget-overlay"></div>
 	<div class="widget-wrapper container modal-content" scroll-on-alerts>
 		<div class="modal-header">
-			<h1 data-i18n="[prepend]settings">
+			<h1 data-i18n="[prepend]settings"> {{'settings' | translate }}
 				<button id="settings-close" type="button" class="close" aria-hidden="true">
 					<img src="//s3.amazonaws.com/rise-common/images/close.png" alt="Close">
 				</button>
@@ -38,7 +38,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="checkbox">
-						<label for="terms" data-i18n="[append]terms">
+						<label for="terms" data-i18n="[append]terms">{{'terms' | translate}}
 							<input id="terms" name="terms" type="checkbox" value="terms" />
 						</label>
 					</div>
@@ -47,15 +47,15 @@
 			<div class="sticky-wrapper">
 				<div class="btn-toolbar sticky-buttons">
 					<button id="save" class="btn btn-primary" type="button">
-						<span class="button-spacer" data-i18n="save" ng-click="saveSettings();"></span>
+						<span class="button-spacer" data-i18n="save" ng-click="saveSettings();">{{'save' | translate}}</span>
 						<i class="fa fa-check-circle"></i>
 					</button>
 					<button id="cancel" class="btn btn-primary" type="button">
-						<span class="button-spacer" data-i18n="cancel"></span>
+						<span class="button-spacer" data-i18n="cancel">{{'cancel' | translate}}</span>
 						<i class="fa fa-times-circle"></i>
 					</button>
 					<button id="help" class="btn btn-primary" type="button">
-						<span class="button-spacer" data-i18n="help"></span>
+						<span class="button-spacer" data-i18n="help">{{'help' | translate}}</span>
 						<i class="fa fa-question-circle"></i>
 					</button>
 				</div>
@@ -66,7 +66,7 @@
 			<div class="row">
 				<div class="col-md-7">
 					<div class="form-group">
-						<label for="layout" data-i18n="layout.label"></label>
+						<label for="layout" data-i18n="layout.label">{{'layout.label' | translate}}</label>
 						<div class="radio">
 							<input type="radio" name="layout" value="current" data-url="http://s3.amazonaws.com/Widget-Weather/current.html" checked="checked">
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/current-vertical.png" class="img-thumbnail" />
@@ -84,7 +84,7 @@
 						</div>
 						<div class="radio">
 							<input type="radio" name="layout" ng-model="layout" value="custom" data-url="custom">
-							<label for="layout-url" data-i18n="layout-url"></label>
+							<label for="layout-url" data-i18n="layout-url">{{'layout-url' | translate}}</label>
 							<input id="layout-url" name="layout-url" type="text" class="form-control" />
 						</div>
 					</div>
@@ -172,21 +172,21 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-						<label for="address" data-i18n="address.label"></label>
+						<label for="address" data-i18n="address.label">{{'address.label' | translate}}</label>
 						<select id="address" ng-model="address" name="address" class="form-control">
-							<option value="geolocation" selected="selected" data-i18n="address.geolocation"></option>
-							<option value="display" data-i18n="address.display"></option>
-							<option value="custom" data-i18n="address.custom"></option>
+							<option value="geolocation" selected="selected" data-i18n="address.geolocation">{{'address.geolocation' | translate}}</option>
+							<option value="display" data-i18n="address.display">{{'address.display' | translate}}</option>
+							<option value="custom" data-i18n="address.custom">{{'address.custom' | translate}}</option>
 						</select>
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="form-group">
-						<label for="description" data-i18n="description.label"></label>
+						<label for="description" data-i18n="description.label">{{'description.label' | translate}}</label>
 						<select id="description" ng-model="description" name="description" class="form-control">
-							<option value="none" data-i18n="description.none"></option>
-							<option value="service" selected="selected" data-i18n="description.service"></option>
-							<option value="custom" data-i18n="description.custom"></option>
+							<option value="none" data-i18n="description.none">{{'description.none' | translate}}</option>
+							<option value="service" selected="selected" data-i18n="description.service">{{'description.service' | translate}}</option>
+							<option value="custom" data-i18n="description.custom">{{'description.custom' | translate}}</option>
 						</select>
 					</div>
 				</div>
@@ -194,13 +194,13 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="custom-address form-group" ng-show="address === 'custom'">
-						<label for="custom-address" data-i18n="custom-address"></label>
+						<label for="custom-address" data-i18n="custom-address">{{'custom-address' | translate}}</label>
 						<input id="custom-address" name="custom-address" class="text-field form-control" type="text" />
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="custom-description form-group" ng-show="description === 'custom'">
-						<label for="custom-description" data-i18n="custom-description"></label>
+						<label for="custom-description" data-i18n="custom-description">{{'custom-description' | translate}}</label>
 						<input id="custom-description" name="custom-description" class="text-field form-control" type="text" />
 					</div>
 				</div>
@@ -235,7 +235,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="checkbox">
-						<label for="show-humidity" data-i18n="show-humidity"></label>
+						<label for="show-humidity" data-i18n="show-humidity">{{'show-humidity' | translate}}</label>
 						<input id="show-humidity" ng-model="showHumidity" name="show-humidity" type="checkbox" value="show-humidity" checked="checked" />
 					</div>
 				</div>
@@ -243,10 +243,10 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="other form-group" ng-show="showHumidity">
-						<label for="wind-speed" data-i18n="wind-speed.label"></label>
+						<label for="wind-speed" data-i18n="wind-speed.label">{{'wind-speed.label' | translate}}</label>
 						<select id="wind-speed" name="wind-speed" class="form-control">
-							<option value="kph" selected="selected" data-i18n="wind-speed.kph"></option>
-							<option value="mph" data-i18n="wind-speed.mph"></option>
+							<option value="kph" selected="selected" data-i18n="wind-speed.kph">{{'wind-speed.kph' | translate}}</option>
+							<option value="mph" data-i18n="wind-speed.mph">{{'wind-speed.mph' | translate}}</option>
 						</select>
 					</div>
 				</div>
@@ -281,10 +281,10 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="form-group">
-						<label for="unit" data-i18n="unit.label"></label>
+						<label for="unit" data-i18n="unit.label">{{'unit.label' | translate}}</label>
 						<select id="unit" name="unit" class="form-control">
-							<option value="celsius" selected="selected" data-i18n="unit.celsius"></option>
-							<option value="fahrenheit" data-i18n="unit.fahrenheit"></option>
+							<option value="celsius" selected="selected" data-i18n="unit.celsius">{{'unit.celsius' | translate}}</option>
+							<option value="fahrenheit" data-i18n="unit.fahrenheit">{{'unit.fahrenheit' | translate}}</option>
 						</select>
 					</div>
 				</div>
@@ -295,6 +295,9 @@
 		</form>
 	</div>
   <script src="js/components/angular/angular.js"></script>
+  <script src="js/components/angular-translate/angular-translate.js"></script>
+  <script src="js/components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+  <script src="js/components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//datejs.googlecode.com/svn/trunk/build/date.js"></script>
 	<script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>

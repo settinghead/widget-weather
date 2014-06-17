@@ -2,6 +2,9 @@
   "name": "rv-weather-widget",
   "dependencies": {
     "angular": "1.2.16",
-    "angular-route": "1.2.16"
+    "angular-route": "1.2.16",
+    "angular-translate": "~2.2.0",
+    "angular-translate-loader-static-files": "~2.2.0",
+    "angular-translate-loader-url": "~2.2.0"
   }
 }
