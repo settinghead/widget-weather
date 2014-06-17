@@ -1,0 +1,1 @@
+angular.module('risevision.widget.weather.settings', ['risevision.widget.common']);

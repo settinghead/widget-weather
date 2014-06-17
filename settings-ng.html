@@ -6,10 +6,6 @@
 	<meta charset="utf-8" />
 
 	<style type="text/css">
-	.widget-wrapper {
-		display: none;
-	}
-
 	/* Vertically align radio buttons with thumbnails. */
 	input[type="radio"][value="current"] {
 		height: 150px;
@@ -30,9 +26,9 @@
 	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common/styles/bootstrap-font-picker/bootstrap-fontpicker.min.css">
 	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common/styles/rise/css/rise.min.css">
 </head>
-<body>
+<body ng-app="risevision.widget.weather.settings" ng-controller="settingsController">
 	<div class="widget-overlay"></div>
-	<div class="widget-wrapper container modal-content">
+	<div class="widget-wrapper container modal-content" scroll-on-alerts>
 		<div class="modal-header">
 			<h1 data-i18n="[prepend]settings">
 				<button id="settings-close" type="button" class="close" aria-hidden="true">
@@ -51,7 +47,7 @@
 			<div class="sticky-wrapper">
 				<div class="btn-toolbar sticky-buttons">
 					<button id="save" class="btn btn-primary" type="button">
-						<span class="button-spacer" data-i18n="save"></span>
+						<span class="button-spacer" data-i18n="save" ng-click="saveSettings();"></span>
 						<i class="fa fa-check-circle"></i>
 					</button>
 					<button id="cancel" class="btn btn-primary" type="button">
@@ -65,7 +61,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="settings-alert" class="alert alert-warning"></div>
+		<div id="settings-alert" class="alert alert-warning" ng-repeat="alert in alerts" ng-show="alerts.length > 0"></div>
 		<form role="form">
 			<div class="row">
 				<div class="col-md-7">
@@ -77,24 +73,24 @@
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/current-horizontal.png" class="img-thumbnail" />
 						</div>
 						<div class="radio">
-							<input type="radio" name="layout" value="three-day" data-url="http://s3.amazonaws.com/Widget-Weather/three-day.html">
+							<input type="radio" name="layout" ng-model="layout" value="three-day" data-url="http://s3.amazonaws.com/Widget-Weather/three-day.html">
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/three-day-vertical.png" class="img-thumbnail" />
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/three-day-horizontal.png" class="img-thumbnail" />
 						</div>
 						<div class="radio">
-							<input type="radio" name="layout" value="current-and-three-day" data-url="http://s3.amazonaws.com/Widget-Weather/current-and-three-day.html">
+							<input type="radio" name="layout" ng-model="layout" value="current-and-three-day" data-url="http://s3.amazonaws.com/Widget-Weather/current-and-three-day.html">
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/current-and-three-day-vertical.png" class="img-thumbnail" />
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/current-and-three-day-horizontal.png" class="img-thumbnail" />
 						</div>
 						<div class="radio">
-							<input type="radio" name="layout" value="custom" data-url="custom">
+							<input type="radio" name="layout" ng-model="layout" value="custom" data-url="custom">
 							<label for="layout-url" data-i18n="layout-url"></label>
 							<input id="layout-url" name="layout-url" type="text" class="form-control" />
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id="current-temp-font" class="current">
+			<div id="current-temp-font" class="current" ng-show="layout === 'current'">
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -120,7 +116,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="forecast-temp-font" class="forecast">
+			<div id="forecast-temp-font" class="forecast" ng-show="layout === 'three-day'">
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -146,7 +142,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="forecast-day-font" class="forecast">
+			<div id="forecast-day-font" class="forecast" ng-show="layout === 'three-day'">
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -177,7 +173,7 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label for="address" data-i18n="address.label"></label>
-						<select id="address" name="address" class="form-control">
+						<select id="address" ng-model="address" name="address" class="form-control">
 							<option value="geolocation" selected="selected" data-i18n="address.geolocation"></option>
 							<option value="display" data-i18n="address.display"></option>
 							<option value="custom" data-i18n="address.custom"></option>
@@ -187,7 +183,7 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label for="description" data-i18n="description.label"></label>
-						<select id="description" name="description" class="form-control">
+						<select id="description" ng-model="description" name="description" class="form-control">
 							<option value="none" data-i18n="description.none"></option>
 							<option value="service" selected="selected" data-i18n="description.service"></option>
 							<option value="custom" data-i18n="description.custom"></option>
@@ -197,13 +193,13 @@
 			</div>
 			<div class="row">
 				<div class="col-md-3">
-					<div class="custom-address form-group">
+					<div class="custom-address form-group" ng-show="address === 'custom'">
 						<label for="custom-address" data-i18n="custom-address"></label>
 						<input id="custom-address" name="custom-address" class="text-field form-control" type="text" />
 					</div>
 				</div>
 				<div class="col-md-3">
-					<div class="custom-description form-group">
+					<div class="custom-description form-group" ng-show="description === 'custom'">
 						<label for="custom-description" data-i18n="custom-description"></label>
 						<input id="custom-description" name="custom-description" class="text-field form-control" type="text" />
 					</div>
@@ -240,13 +236,13 @@
 				<div class="col-md-12">
 					<div class="checkbox">
 						<label for="show-humidity" data-i18n="show-humidity"></label>
-						<input id="show-humidity" name="show-humidity" type="checkbox" value="show-humidity" checked="checked" />
+						<input id="show-humidity" ng-model="showHumidity" name="show-humidity" type="checkbox" value="show-humidity" checked="checked" />
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-2">
-					<div class="other form-group">
+					<div class="other form-group" ng-show="showHumidity">
 						<label for="wind-speed" data-i18n="wind-speed.label"></label>
 						<select id="wind-speed" name="wind-speed" class="form-control">
 							<option value="kph" selected="selected" data-i18n="wind-speed.kph"></option>
@@ -298,6 +294,7 @@
 			</div>
 		</form>
 	</div>
+  <script src="js/components/angular/angular.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//datejs.googlecode.com/svn/trunk/build/date.js"></script>
 	<script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
@@ -310,14 +307,11 @@
 	<script src="//s3.amazonaws.com/rise-common/scripts/i18next/i18next.min.js"></script>
 	<script src="//s3.amazonaws.com/rise-common/scripts/sticky/jquery.sticky.min.js"></script>
 	<script src="//s3.amazonaws.com/Common-Production/Common/RiseVision.Common.min.js"></script>
-	<script src="js/settings.min.js"></script>
-	<script>
-	var weather = null;
 
-	$(document).ready(function() {
-		weather = new RiseVision.Weather.Settings();
-		weather.init();
-	});
-	</script>
+  <script src="js/settings-app.js"></script>
+  <script src="js/settings/svc-common-settings.js"></script>
+  <script src="js/settings/svc-settings.js"></script>
+  <script src="js/settings/ctr-settings.js"></script>
+  <script src="js/settings/svc-gadgets-api.js"></script>
 </body>
 </html>
