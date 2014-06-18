@@ -68,29 +68,36 @@
 					<div class="form-group">
 						<label for="layout" data-i18n="layout.label">{{'layout.label' | translate}}</label>
 						<div class="radio">
-							<input type="radio" name="layout" value="current" data-url="http://s3.amazonaws.com/Widget-Weather/current.html" checked="checked">
+							<input type="radio" name="layout" ng-model="settings.params.up_layout" value="current" data-url="http://s3.amazonaws.com/Widget-Weather/current.html" checked="checked">
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/current-vertical.png" class="img-thumbnail" />
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/current-horizontal.png" class="img-thumbnail" />
 						</div>
 						<div class="radio">
-							<input type="radio" name="layout" ng-model="layout" value="three-day" data-url="http://s3.amazonaws.com/Widget-Weather/three-day.html">
+							<input type="radio" name="layout" ng-model="settings.params.up_layout" value="three-day" data-url="http://s3.amazonaws.com/Widget-Weather/three-day.html">
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/three-day-vertical.png" class="img-thumbnail" />
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/three-day-horizontal.png" class="img-thumbnail" />
 						</div>
 						<div class="radio">
-							<input type="radio" name="layout" ng-model="layout" value="current-and-three-day" data-url="http://s3.amazonaws.com/Widget-Weather/current-and-three-day.html">
+							<input type="radio" name="layout" ng-model="settings.params.up_layout" value="current-and-three-day" data-url="http://s3.amazonaws.com/Widget-Weather/current-and-three-day.html">
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/current-and-three-day-vertical.png" class="img-thumbnail" />
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/current-and-three-day-horizontal.png" class="img-thumbnail" />
 						</div>
 						<div class="radio">
-							<input type="radio" name="layout" ng-model="layout" value="custom" data-url="custom">
+							<input type="radio" name="layout" ng-model="settings.params.up_layout" value="custom" data-url="custom">
 							<label for="layout-url" data-i18n="layout-url">{{'layout-url' | translate}}</label>
-							<input id="layout-url" name="layout-url" type="text" class="form-control" />
+							<input id="layout-url" name="layout-url" type="text" class="form-control" ng-model="settings.additionalParams['layout-url']"/>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id="current-temp-font" class="current" ng-show="layout === 'current'">
+			<div id="current-temp-font" class="current" ng-show="settings.params.up_layout === 'current'"
+      font-picker
+      font-picker-i18n-prefix="current-temp-font"
+			font-picker-prefix="current-temp"
+      font-picker-default-font="Verdana"
+      font-picker-default-font-size="60"
+      font-picker-default-is-bold="true"
+      font-picker-default-is-italic="false">
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -116,7 +123,10 @@
 					</div>
 				</div>
 			</div>
-			<div id="forecast-temp-font" class="forecast" ng-show="layout === 'three-day'">
+			<div id="forecast-temp-font" class="forecast" ng-show="settings.params.up_layout === 'three-day'"
+      font-picker
+      font-picker-default-font="Verdana"
+      >
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -142,7 +152,12 @@
 					</div>
 				</div>
 			</div>
-			<div id="forecast-day-font" class="forecast" ng-show="layout === 'three-day'">
+			<div id="forecast-day-font" class="forecast"
+			  ng-show="settings.params.up_layout === 'three-day'"
+				font-picker
+				font-picker-default-font="Verdana"
+				font-picker-default-is-bold="true"
+				>
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -201,11 +216,17 @@
 				<div class="col-md-3">
 					<div class="custom-description form-group" ng-show="description === 'custom'">
 						<label for="custom-description" data-i18n="custom-description">{{'custom-description' | translate}}</label>
-						<input id="custom-description" name="custom-description" class="text-field form-control" type="text" />
+						<input id="custom-description" name="custom-description" class="text-field form-control" type="text" ng-model="settings.additionalParams['custom-description']"/>
 					</div>
 				</div>
 			</div>
-			<div id="address-font">
+			<div id="address-font"
+			font-picker
+			font-picker-prefix="address"
+			font-picker-default-font="Verdana"
+			font-picker-default-font-size="24"
+			font-picker-default-is-bold="true"
+			>
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -251,7 +272,12 @@
 					</div>
 				</div>
 			</div>
-			<div id="humidity-font" class="other">
+			<div id="humidity-font" class="other"
+	  		font-picker
+		  	font-picker-i18n-prefix="current-temp-font"
+			  font-picker-prefix="humidity"
+			  font-picker-default-font="Verdana"
+			>
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -288,7 +314,15 @@
 						</select>
 					</div>
 				</div>
-				<div id="background-color" class="col-md-3">
+				<div id="background-color" class="col-md-3"
+				font-picker
+				font-picker-prefix="background-color"
+				font-picker-default-color=""
+				font-picker-font-visible="false"
+				font-picker-font-size-visible="false"
+				font-picker-variants-visible="false"
+				font-picker-text-visible="false"
+				>
 					<div class="font-picker-color form-group"></div>
 				</div>
 			</div>
@@ -314,7 +348,9 @@
   <script src="js/settings-app.js"></script>
   <script src="js/settings/svc-common-settings.js"></script>
   <script src="js/settings/svc-settings.js"></script>
+	<script src="js/settings/svc-i18n-legacy.js"></script>
   <script src="js/settings/ctr-settings.js"></script>
   <script src="js/settings/svc-gadgets-api.js"></script>
+  <script src="js/settings/dtv-font-picker.js"></script>
 </body>
 </html>

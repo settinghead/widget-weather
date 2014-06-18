@@ -5,4 +5,8 @@ angular.module('risevision.widget.weather.settings', ['risevision.widget.common'
       suffix: '/translation.json'
     });
     $translateProvider.determinePreferredLanguage();
+    if($translateProvider.preferredLanguage().indexOf('en_') === 0){
+      //default to 'en' on any of the English variants
+      $translateProvider.preferredLanguage('en');
+    }
   }]);

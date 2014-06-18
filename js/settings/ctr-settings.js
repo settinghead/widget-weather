@@ -2,8 +2,18 @@ angular.module('risevision.widget.weather.settings')
   .controller('settingsController', ['$scope', 'settingsSaver', 'settingsGetter',
     function ($scope, settingsSaver, settingsGetter) {
 
-    $scope.settings = { params: {}, additionalParams: {} };
+    $scope.settings = { params: {up_layout: 'current'}, additionalParams: {}};
     $scope.alerts = [];
+
+    $scope.getAdditionalParams = function (name, defaultVal) {
+      var val = $scope.settings.additionalParams[name];
+      if(angular.isUndefined(val)) {
+        return defaultVal;
+      }
+      else {
+        return val;
+      }
+    };
 
     $scope.saveSettings = function () {
       //clear out previous alerts, if any
@@ -16,8 +26,8 @@ angular.module('risevision.widget.weather.settings')
       });
     };
 
-    settingsGetter.getAdditionalParams().then(function (result) {
-      $scope.settings.additionalParams = result;
+    settingsGetter.getAdditionalParams().then(function (additionalParams) {
+      $scope.settings.additionalParams = additionalParams;
     });
 
   }])
@@ -29,7 +39,7 @@ angular.module('risevision.widget.weather.settings')
       link: function($scope, $elm) {
         $scope.$watchCollection('alerts', function (newAlerts, oldAlerts) {
           if(newAlerts.length > 0 && oldAlerts.length === 0) {
-            $('body').animate({scrollTop: $elm.offset().top}, 'fast');              
+            $('body').animate({scrollTop: $elm.offset().top}, 'fast');
           }
         });
       }
