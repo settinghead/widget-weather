@@ -1,5 +1,5 @@
 angular.module('risevision.widget.common')
-  .directive('fontPicker', ['i18nLoader', function (i18nLoader) {
+  .directive('fontPicker', ['i18nLoader', '$log', function (i18nLoader, $log) {
     return {
       restrict: 'A',
       scope: false,
@@ -23,6 +23,7 @@ angular.module('risevision.widget.common')
         };
         var $elm = $(elm);
         var prefix = attrs.fontPickerPrefix || stripLast(attrs.id, '-font');
+        var picker = $elm.data('font-picker');
         $elm.fontPicker({
           'i18n-prefix': attrs.fontPickerI18nPrefix || attrs.id,
           'defaults' : {
@@ -49,10 +50,15 @@ angular.module('risevision.widget.common')
         //load i18n text translations after ensuring i18n has been initialized
         i18nLoader.get().then(function () {$elm.i18n();});
 
-        $scope.watch('collectAdditionalParams', function (newVal) {
-          if(newVal) {
-            
-          }
+        $scope.$on('collectAdditionalParams', function () {
+          $log.debug('Collecting params from', prefix, picker);
+          $scope.setAdditionalParams(prefix + '-font', picker.getFont());
+          $scope.setAdditionalParams(prefix + '-font-style', picker.getFontStyle());
+          $scope.setAdditionalParams(prefix + '-font-url', picker.getfontURL());
+          $scope.setAdditionalParams(prefix + '-font-size', picker.getFontSize());
+          $scope.setAdditionalParams(prefix + '-bold', picker.getBold());
+          $scope.setAdditionalParams(prefix + '-italic', picker.getItalic());
+          $scope.setAdditionalParams(prefix + '-color', picker.getColor());
         });
       }
     };

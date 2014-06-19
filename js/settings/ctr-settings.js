@@ -1,6 +1,6 @@
 angular.module('risevision.widget.weather.settings')
-  .controller('settingsController', ['$scope', 'settingsSaver', 'settingsGetter',
-    function ($scope, settingsSaver, settingsGetter) {
+  .controller('settingsController', ['$scope', 'settingsSaver', 'settingsGetter', '$timeout',
+    function ($scope, settingsSaver, settingsGetter, $timeout) {
 
     $scope.settings = { params: {up_layout: 'current'}, additionalParams: {}};
     $scope.alerts = [];
@@ -15,21 +15,29 @@ angular.module('risevision.widget.weather.settings')
       }
     };
 
+    $scope.setAdditionalParams = function (name, val) {
+      $scope.settings.additionalParams[name] = val;
+    };
+
     $scope.saveSettings = function () {
       //clear out previous alerts, if any
       $scope.alerts = [];
 
-      settingsSaver.saveSettings($scope.settings).then(function () {
-        //TODO: perhaps show some indicator in UI?
-      }, function (err) {
-        $scope.alerts = err.alerts;
-      });
+      $scope.$emit('collectAdditionalParams');
+
+      $timeout (function () {
+        settingsSaver.saveSettings($scope.settings).then(function () {
+          //TODO: perhaps show some indicator in UI?
+        }, function (err) {
+          $scope.alerts = err.alerts;
+        });
+      }, 0);
+
     };
 
     settingsGetter.getAdditionalParams().then(function (additionalParams) {
       $scope.settings.additionalParams = additionalParams;
     });
-
   }])
 
   .directive('scrollOnAlerts', function() {

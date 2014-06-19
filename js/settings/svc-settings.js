@@ -1,5 +1,6 @@
 angular.module('risevision.widget.weather.settings')
-  .service('settingsSaver', ['$q', 'gadgetsApi', function ($q, gadgetsApi) {
+  .service('settingsSaver', ['$q', '$log', 'gadgetsApi', 'settingsParser',
+  function ($q, $log, gadgetsApi, settingsParser) {
     var self = this;
 
     this.saveSettings = function (settings) {
@@ -8,21 +9,29 @@ angular.module('risevision.widget.weather.settings')
       var alerts = self.validateSettings(settings);
 
       if(alerts.length > 0) {
+        $log.debug('Validation failed.', alerts);
         deferred.reject({alerts: alerts});
       }
 
-      var str = self.paramsToString(settings.params);
+      var str = settingsParser.encodeParams(settings.params);
       var additionalParamsStr =
-        self.additionalParamsToString(settings.additionalParams);
+        settingsParser.encodeAdditionalParams(settings.additionalParams);
 
       gadgetsApi.rpc.call('', 'rscmd_saveSettings', null, {
         params: str,
         additionalParams: additionalParamsStr
       });
 
+      $log.debug('Settings saved. ', settings);
+
       deferred.resolve();
 
       return deferred.promise;
+    };
+
+    this.validateSettings = function(settings) {
+      //TODO
+      return true;
     };
 
   }])
@@ -62,10 +71,12 @@ angular.module('risevision.widget.weather.settings')
 
     this.parseParams = function (paramsStr) {
       //TODO
+      return {};
     };
 
     this.encodeParams = function (parmas) {
       //TODO
+      return "";
     };
 
   }]);

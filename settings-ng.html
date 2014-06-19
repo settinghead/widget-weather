@@ -68,7 +68,8 @@
 					<div class="form-group">
 						<label for="layout" data-i18n="layout.label">{{'layout.label' | translate}}</label>
 						<div class="radio">
-							<input type="radio" name="layout" ng-model="settings.params.up_layout" value="current" data-url="http://s3.amazonaws.com/Widget-Weather/current.html" checked="checked">
+							<input type="radio" name="layout"
+							ng-model="settings.params.up_layout" value="current" data-url="http://s3.amazonaws.com/Widget-Weather/current.html" checked="checked">
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/current-vertical.png" class="img-thumbnail" />
 							<img src="http://s3.amazonaws.com/Widget-Weather/images/thumbs/current-horizontal.png" class="img-thumbnail" />
 						</div>
@@ -123,7 +124,8 @@
 					</div>
 				</div>
 			</div>
-			<div id="forecast-temp-font" class="forecast" ng-show="settings.params.up_layout === 'three-day'"
+			<div id="forecast-temp-font" class="forecast"
+			ng-show="settings.params.up_layout === 'three-day'"
       font-picker
       font-picker-default-font="Verdana"
       >
@@ -152,6 +154,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div id="forecast-day-font" class="forecast"
 			  ng-show="settings.params.up_layout === 'three-day'"
 				font-picker
@@ -208,7 +211,8 @@
 			</div>
 			<div class="row">
 				<div class="col-md-3">
-					<div class="custom-address form-group" ng-show="address === 'custom'">
+					<div class="custom-address form-group"
+					ng-show="address === 'custom'">
 						<label for="custom-address" data-i18n="custom-address">{{'custom-address' | translate}}</label>
 						<input id="custom-address" name="custom-address" class="text-field form-control" type="text" />
 					</div>
@@ -314,6 +318,7 @@
 						</select>
 					</div>
 				</div>
+
 				<div id="background-color" class="col-md-3"
 				font-picker
 				font-picker-prefix="background-color"
