@@ -1,12 +1,15 @@
 angular.module('risevision.widget.weather.settings')
   .service('settingsSaver', ['$q', '$log', 'gadgetsApi', 'settingsParser',
   function ($q, $log, gadgetsApi, settingsParser) {
-    var self = this;
 
-    this.saveSettings = function (settings) {
+    this.saveSettings = function (settings, validator) {
       var deferred = $q.defer();
 
-      var alerts = self.validateSettings(settings);
+      var alerts = [];
+
+      if (validator) {
+        alerts = validator(settings);
+      }
 
       if(alerts.length > 0) {
         $log.debug('Validation failed.', alerts);
@@ -27,11 +30,6 @@ angular.module('risevision.widget.weather.settings')
       deferred.resolve();
 
       return deferred.promise;
-    };
-
-    this.validateSettings = function(settings) {
-      //TODO
-      return true;
     };
 
   }])
