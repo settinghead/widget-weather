@@ -27,17 +27,17 @@ angular.module('risevision.widget.common')
         $elm.fontPicker({
           'i18n-prefix': attrs.fontPickerI18nPrefix || attrs.id,
           'defaults' : {
-            'font' : $scope.getAdditionalParams(
+            'font' : $scope.getAdditionalParam(
               prefix + '-font', attrs.fontPickerDefaultFont),
-            'font-url' : $scope.getAdditionalParams(
+            'font-url' : $scope.getAdditionalParam(
               prefix + '-font-url', attrs.fontPickerDefaultFontUrl),
-            'font-size' : $scope.getAdditionalParams(
+            'font-size' : $scope.getAdditionalParam(
               prefix + '-font-size', attrs.fontPickerDefaultFontSize),
-            'is-bold' : $scope.getAdditionalParams(
+            'is-bold' : $scope.getAdditionalParam(
               prefix + '-bold', attrs.fontPickerDefaultIsBold),
-            'is-italic' : $scope.getAdditionalParams(
+            'is-italic' : $scope.getAdditionalParam(
               prefix + '-italic', attrs.fontPickerDefaultIsItalic),
-            'color' : $scope.getAdditionalParams(
+            'color' : $scope.getAdditionalParam(
               prefix + '-color', attrs.fontPickerDefaultColor)
           },
           'visibility': {
@@ -52,13 +52,13 @@ angular.module('risevision.widget.common')
 
         $scope.$on('collectAdditionalParams', function () {
           $log.debug('Collecting params from', prefix, picker);
-          $scope.setAdditionalParams(prefix + '-font', picker.getFont());
-          $scope.setAdditionalParams(prefix + '-font-style', picker.getFontStyle());
-          $scope.setAdditionalParams(prefix + '-font-url', picker.getfontURL());
-          $scope.setAdditionalParams(prefix + '-font-size', picker.getFontSize());
-          $scope.setAdditionalParams(prefix + '-bold', picker.getBold());
-          $scope.setAdditionalParams(prefix + '-italic', picker.getItalic());
-          $scope.setAdditionalParams(prefix + '-color', picker.getColor());
+          $scope.setAdditionalParam(prefix + '-font', picker.getFont());
+          $scope.setAdditionalParam(prefix + '-font-style', picker.getFontStyle());
+          $scope.setAdditionalParam(prefix + '-font-url', picker.getfontURL());
+          $scope.setAdditionalParam(prefix + '-font-size', picker.getFontSize());
+          $scope.setAdditionalParam(prefix + '-bold', picker.getBold());
+          $scope.setAdditionalParam(prefix + '-italic', picker.getItalic());
+          $scope.setAdditionalParam(prefix + '-color', picker.getColor());
         });
       }
     };

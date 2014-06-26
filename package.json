@@ -1,0 +1,28 @@
+{
+  "name": "rv-weather-widget",
+  "version": "0.1.0",
+  "description": "rv-weather-widget =================",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/Rise-Vision/widget-weather.git"
+  },
+  "keywords": [
+    "weather",
+    "widget",
+    "rise",
+    "vision"
+  ],
+  "author": "",
+  "license": "GPLv3",
+  "devDependencies": {
+    "gulp": "^3.8.3",
+    "gulp-connect": "^2.0.5",
+    "gulp-html2string": "^0.1.1",
+    "gulp-rename": "^1.2.0",
+    "gulp-util": "^2.2.19"
+  }
+}

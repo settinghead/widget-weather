@@ -10,6 +10,7 @@
     "angular-translate-loader-static-files": "~2.2.0",
     "angular-translate-loader-url": "~2.2.0",
     "rv-bootstrap-formhelpers" : "git://github.com/Rise-Vision/BootstrapFormHelpers#2.3.2-rv",
-    "rv-bootstrap-font-picker" : "git://github.com/Rise-Vision/bootstrap-font-picker"
+    "rv-bootstrap-font-picker" : "git://github.com/Rise-Vision/bootstrap-font-picker",
+    "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core"
   }
 }

@@ -1,2 +1,4 @@
 js/components
 js/config/config.js
+dist
+node_modules
