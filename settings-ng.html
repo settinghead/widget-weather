@@ -42,15 +42,15 @@
 				<div class="col-md-12">
 					<div class="checkbox">
 						<label for="terms" data-i18n="[append]terms">{{'terms' | translate}}
-							<input id="terms" name="terms" type="checkbox" value="terms" />
+							<input id="terms" name="terms" type="checkbox" value="terms" ng-model="settings.params.up_terms"/>
 						</label>
 					</div>
 				</div>
 			</div>
 			<div class="sticky-wrapper">
-				<div class="btn-toolbar sticky-buttons">
+				<div class="btn-toolbar sticky-buttons" ng-click="saveSettings();">
 					<button id="save" class="btn btn-primary" type="button">
-						<span class="button-spacer" data-i18n="save" ng-click="saveSettings();">{{'save' | translate}}</span>
+						<span class="button-spacer" data-i18n="save">{{'save' | translate}}</span>
 						<i class="fa fa-check-circle"></i>
 					</button>
 					<button id="cancel" class="btn btn-primary" type="button">
@@ -96,49 +96,46 @@
 			</div>
 
 			<div>
-			<select value="{{additionalParams.country}}"></select>
+			<select ng-model="settings.additionalParams.country"></select>
 			</div>
 
-			<date-picker></date-picker>
+			<font-picker id="current-temp-font" class="current"
+				ng-show="settings.params.up_layout === 'current'"
+				default-font="Verdana"
+				ng-model="settings.additionalParams['current-temp-font']"
+			></font-picker>
 
-			<div id="current-temp-font" class="current" ng-show="settings.params.up_layout === 'current'"
-      font-picker
-      font-picker-i18n-prefix="current-temp-font"
-			font-picker-prefix="current-temp"
-      font-picker-default-font="Verdana"
-      font-picker-default-font-size="60"
-      font-picker-default-is-bold="true"
-      font-picker-default-is-italic="false">
-				<div class="row">
-					<div class="col-md-3">
-						<div class="font-picker-font form-group"></div>
-					</div>
-					<div class="col-md-3">
-						<div class="font-picker-size form-group"></div>
-					</div>
-					<div class="col-md-3">
-						<div class="font-picker-variants form-group"></div>
-					</div>
-					<div class="col-md-3">
-						<div class="font-picker-color form-group"></div>
-					</div>
+			<div class="row">
+				<div class="col-md-3">
+					<div class="font-picker-font form-group"></div>
 				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="font-picker-custom-font form-group"></div>
-					</div>
+				<div class="col-md-3">
+					<div class="font-picker-size form-group"></div>
 				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="font-picker-text form-group"></div>
-					</div>
+				<div class="col-md-3">
+					<div class="font-picker-variants form-group"></div>
+				</div>
+				<div class="col-md-3">
+					<div class="font-picker-color form-group"></div>
 				</div>
 			</div>
-			<div id="forecast-temp-font" class="forecast"
+			<div class="row">
+				<div class="col-md-6">
+					<div class="font-picker-custom-font form-group"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="font-picker-text form-group"></div>
+				</div>
+			</div>
+
+
+			<font-picker id="forecast-temp-font" class="forecast"
 			ng-show="settings.params.up_layout === 'three-day'"
-      font-picker
-      font-picker-default-font="Verdana"
-      >
+			ng-model="settings.additionalParams['forecast-temp-font']"
+      default-font="Verdana"
+      ></font-picker>
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -163,14 +160,12 @@
 						<div class="font-picker-text form-group"></div>
 					</div>
 				</div>
-			</div>
 
-			<div id="forecast-day-font" class="forecast"
+			<font-picker id="forecast-day-font" class="forecast"
 			  ng-show="settings.params.up_layout === 'three-day'"
-				font-picker
-				font-picker-default-font="Verdana"
-				font-picker-default-is-bold="true"
-				>
+				ng-model="settings.additionalParams['forecast-day-font']"
+				default-font="Verdana"
+				></font-picker>
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -195,7 +190,6 @@
 						<div class="font-picker-text form-group"></div>
 					</div>
 				</div>
-			</div>
 			<hr>
 			<div class="row">
 				<div class="col-md-3">
@@ -234,13 +228,15 @@
 					</div>
 				</div>
 			</div>
-			<div id="address-font"
-			font-picker
-			font-picker-prefix="address"
-			font-picker-default-font="Verdana"
+
+			<font-picker id="address-font"
+			prefix="address"
+			default-font="Verdana"
+			ng-model="settings.additionalParams['address-font']"
 			font-picker-default-font-size="24"
 			font-picker-default-is-bold="true"
-			>
+			></font-picker>
+
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -265,7 +261,6 @@
 						<div class="font-picker-text form-group"></div>
 					</div>
 				</div>
-			</div>
 			<hr>
 			<div class="row">
 				<div class="col-md-12">
@@ -286,12 +281,10 @@
 					</div>
 				</div>
 			</div>
-			<div id="humidity-font" class="other"
-	  		font-picker
-		  	font-picker-i18n-prefix="current-temp-font"
-			  font-picker-prefix="humidity"
-			  font-picker-default-font="Verdana"
-			>
+			<font-picker id="humidity-font" class="other"
+		  	font-picker-i18n-prefix="humidity-font"
+				ng-model="settings.additionalParams['humidity-font']"
+			  default-font="Verdana"></font-picker>
 				<div class="row">
 					<div class="col-md-3">
 						<div class="font-picker-font form-group"></div>
@@ -316,7 +309,6 @@
 						<div class="font-picker-text form-group"></div>
 					</div>
 				</div>
-			</div>
 			<hr>
 			<div class="row">
 				<div class="col-md-2">
@@ -330,7 +322,6 @@
 				</div>
 
 				<div id="background-color" class="col-md-3"
-				font-picker
 				font-picker-prefix="background-color"
 				font-picker-default-color=""
 				font-picker-font-visible="false"
@@ -355,15 +346,14 @@
 	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-select/bootstrap-select.min.js"></script>
 	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-form-helper/bootstrap-formhelpers.min.js"></script>
 	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-color-picker/bootstrap-colorpicker.min.js"></script>
-	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-font-picker/bootstrap-fontpicker.min.js"></script>
 	<script src="//s3.amazonaws.com/rise-common/scripts/i18next/i18next.min.js"></script>
 	<script src="//s3.amazonaws.com/rise-common/scripts/sticky/jquery.sticky.min.js"></script>
 	<script src="//s3.amazonaws.com/Common-Production/Common/RiseVision.Common.min.js"></script>
 
   <script src="js/settings-app.js"></script>
 	<script src="js/components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>
-	<script src="js/components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>
+	<script src="js/components/bootstrap-font-picker/dist/angular/bootstrap-font-picker-angular-directive.js"></script>
+	<script src="js/components/bootstrap-font-picker/dist/bootstrap-font-picker.js"></script>
 	<script src="js/settings/ctr-weather-settings.js"></script>
-	<script src="js/settings/dtv-font-picker.js"></script>
 </body>
 </html>
