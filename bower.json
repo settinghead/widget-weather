@@ -1,16 +1,20 @@
 {
   "name": "rv-weather-widget",
   "homepage": "http://github.com/Rise-Vision/widget-weather",
-  "version" : "0.1.0",
+  "version": "0.1.0",
   "dependencies": {
     "angular": "1.2.18",
     "jquery": "1.11.0",
     "angular-route": "1.2.18",
-    "angular-translate": "~2.2.0",
-    "angular-translate-loader-static-files": "~2.2.0",
-    "angular-translate-loader-url": "~2.2.0",
-    "rv-bootstrap-formhelpers" : "git://github.com/Rise-Vision/BootstrapFormHelpers#2.3.2-rv",
-    "rv-bootstrap-font-picker" : "git://github.com/Rise-Vision/bootstrap-font-picker",
-    "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core"
+    "angular-translate": "2.2.0",
+    "angular-translate-loader-static-files": "2.2.0",
+    "angular-translate-loader-url": "2.2.0",
+    "rv-bootstrap-formhelpers": "git://github.com/Rise-Vision/BootstrapFormHelpers.git#2.3.2-rv",
+    "widget-settings-ui-core": "git://github.com/Rise-Vision/widget-settings-ui-core.git",
+    "widget-settings-ui-components": "git://github.com/Rise-Vision/widget-settings-ui-components",
+    "rv-bootstrap-formhelpers": "git://github.com/Rise-Vision/BootstrapFormHelpers#2.3.2-rv",
+    "bootstrap-form-components": "git://github.com/Rise-Vision/bootstrap-form-components",
+    "bootstrap": "git://github.com/Rise-Vision/bootstrap",
+    "style-common": "git://github.com/Rise-Vision/style-common"
   }
 }

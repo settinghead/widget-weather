@@ -6,7 +6,7 @@
   "noempty"      : true,  // true: Prohibit use of empty blocks
   "nonew"        : true,  // true: Prohibit use of constructors for side-effects (without assignment)
   "plusplus"     : false, // true: Prohibit use of `++` & `--`
-  "quotmark"     : "single",   // Quotation mark consistency:
+  "quotmark"     : "double",   // Quotation mark consistency:
                                 //   false    : do nothing (default)
                                 //   true     : ensure whatever is used is consistent
                                 //   "single" : require single quotes
@@ -19,7 +19,7 @@
   "boss"         : false, // true: Tolerate assignments where comparisons would be expected
   "eqnull"       : true,  // true: Tolerate use of `== null`
   "eqeqeq"       : true,  // true: Require triple equals (===) for comparison
-  "expr"         : false, // true: Tolerate `ExpressionStatement` as Programs
+  "expr"         : true, // true: Tolerate `ExpressionStatement` as Programs
   "laxbreak"     : false, // true: Tolerate possibly unsafe line breakings
   "loopfunc"     : true,  // true: Tolerate functions being defined in loops
   "sub"          : true,  // true: Tolerate using `[]` notation when it can still be expressed in dot notation
@@ -246,8 +246,5 @@
     "shoppingCart": false,
     "showSpin": false,
     "hideSpin": false
-
-    /* protractor */
-    "protractor" : false
   }
 }

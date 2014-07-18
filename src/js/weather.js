@@ -33,7 +33,7 @@ $(document).ready(function() {
 	};
 
 	//Set background color.
-	if (backgroundColor != null && backgroundColor != "") {
+	if (backgroundColor !== null && backgroundColor !== "") {
 		document.body.style.background = backgroundColor;
 	}
 

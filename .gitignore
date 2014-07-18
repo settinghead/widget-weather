@@ -1,4 +1,9 @@
-js/components
-js/config/config.js
-dist
-node_modules
+*.log
+src/components/
+node_modules/
+dist/
+test_reports/
+coverage/
+src/config/config.js
+tmp
+src/*-e2e.html
